@@ -55,10 +55,14 @@ class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
             return;
         }
 
-        $js = file_get_contents(GOOGLE_ANALYTICS_PLUGIN_DIR . '/snippet.js');
         $html = '<script type="text/javascript">'
               . 'var accountId =' . js_escape($accountId) .';'
-              . $js
+              . '(function(i,s,o,g,r,a,m){i[' . 'GoogleAnalyticsObject' . ']=r;i[r]=i[r]||function(){'
+              . '(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),'
+              . 'm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)'
+              . '})(window,document,' . 'script' . ',' . 'https://www.google-analytics.com/analytics.js' . ',' . 'ga' . ');'
+              . 'ga(' . 'create' . ',' . 'accountId' . ',' . 'auto' . ');'
+              . 'ga(' . 'send' .',' . 'pageview' . ');'
               . '</script>';
 
         echo $html;
