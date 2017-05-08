@@ -23,7 +23,6 @@
  *
  */
 
-define('GOOGLE_ANALYTICS_PLUGIN_VERSION', get_plugin_ini('GoogleAnalytics', 'version'));
 define('GOOGLE_ANALYTICS_PLUGIN_DIR', dirname(__FILE__));
 define('GOOGLE_ANALYTICS_ACCOUNT_OPTION', 'googleanalytics_account_id');
 
