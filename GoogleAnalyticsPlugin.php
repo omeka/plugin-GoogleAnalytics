@@ -23,14 +23,12 @@
  *
  */
 
-define('GOOGLE_ANALYTICS_PLUGIN_VERSION', get_plugin_ini('GoogleAnalytics', 'version'));
 define('GOOGLE_ANALYTICS_PLUGIN_DIR', dirname(__FILE__));
 define('GOOGLE_ANALYTICS_ACCOUNT_OPTION', 'googleanalytics_account_id');
 
 class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
 {
     protected $_hooks =array(
-        'install',
         'uninstall',
         'public_head',
         'config',
@@ -39,10 +37,6 @@ class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
 
     protected $_filters = array();
 
-    public function hookInstall()
-    {
-        set_option('googleanalytics_version', GOOGLE_ANALYTICS_PLUGIN_DIR);
-    }
     public function hookUninstall()
     {
         delete_option('googleanalytics_version');
