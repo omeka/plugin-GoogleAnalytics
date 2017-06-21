@@ -32,7 +32,7 @@ class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
     protected $_hooks =array(
         'install',
         'uninstall',
-        'public_footer',
+        'public_head',
         'config',
         'config_form'
     );
@@ -48,7 +48,7 @@ class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
         delete_option('googleanalytics_version');
         delete_option(GOOGLE_ANALYTICS_ACCOUNT_OPTION);
     }
-    public function hookPublicFooter()
+    public function hookPublicHead()
     {
         $accountId = get_option(GOOGLE_ANALYTICS_ACCOUNT_OPTION);
         if (empty($accountId)) {
