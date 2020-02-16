@@ -52,7 +52,7 @@ class OmekaGoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
     
     public function hookPublicHead()
     {
-        $accountId = js_escape(get_option(GOOGLE_ANALYTICS_ACCOUNT_OPTION));
+        $accountId = get_option(GOOGLE_ANALYTICS_ACCOUNT_OPTION);
         if (empty($accountId)) {
             return;
         }
