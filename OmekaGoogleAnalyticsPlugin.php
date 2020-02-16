@@ -58,7 +58,7 @@ class OmekaGoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
         }
 
         $jstemplate = file_get_contents(GOOGLE_ANALYTICS_PLUGIN_DIR . '/gtag.js');
-        $js = str.replace("GA_MEASUREMENT_ID", $accountId);
+        $js = str_replace("GA_MEASUREMENT_ID", $accountId, $jstemplate);
         
         echo $js;
     }
