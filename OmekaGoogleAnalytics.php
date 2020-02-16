@@ -32,7 +32,7 @@ class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
     protected $_hooks =array(
         'install',
         'uninstall',
-        'public_footer',
+        'public_head',
         'config',
         'config_form'
     );
@@ -43,26 +43,26 @@ class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
     {
         set_option('googleanalytics_version', GOOGLE_ANALYTICS_PLUGIN_DIR);
     }
+    
     public function hookUninstall()
     {
         delete_option('googleanalytics_version');
         delete_option(GOOGLE_ANALYTICS_ACCOUNT_OPTION);
     }
-    public function hookPublicFooter()
+    
+    public function hookPublicHead()
     {
-        $accountId = get_option(GOOGLE_ANALYTICS_ACCOUNT_OPTION);
+        $accountId = js_escape(get_option(GOOGLE_ANALYTICS_ACCOUNT_OPTION));
         if (empty($accountId)) {
             return;
         }
 
-        $js = file_get_contents(GOOGLE_ANALYTICS_PLUGIN_DIR . '/snippet.js');
-        $html = '<script type="text/javascript">'
-              . 'var accountId =' . js_escape($accountId) .';'
-              . $js
-              . '</script>';
-
-        echo $html;
+        $jstemplate = file_get_contents(GOOGLE_ANALYTICS_PLUGIN_DIR . '/gtag.js');
+        $js = str.replace("GA_MEASUREMENT_ID", $accountId);
+        
+        echo $js;
     }
+    
     public function hookConfig($args)
     {
         $post = $args['post'];
@@ -71,6 +71,7 @@ class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
             $post[GOOGLE_ANALYTICS_ACCOUNT_OPTION]
         );
     }
+    
     public function hookConfigForm()
     {
        include GOOGLE_ANALYTICS_PLUGIN_DIR . '/config_form.php';
