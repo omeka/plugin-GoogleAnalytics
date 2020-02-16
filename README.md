@@ -13,16 +13,17 @@ Plugins](http://omeka.org/codex/Managing_Plugins) for more information). On the
 configuration screen, you will need to paste in the Google Analytics
 JavaScript. You can do that by following these steps:
 
- 1. Log onto [Google Analytics](https://www.google.com/analytics/);
+ 1. Log onto [Google Analytics](https://analytics.google.com/)
 
- 2. Click "Edit" for the profile you wish to use;
+ 2. Click "Admin" in the bottom left
 
- 3. Click "Check Status" (it will be a small link near the top of the page);
+ 3. Select the Account and Property you wish to add Google Analytics to
 
- 4. Copy all of the text in the box labelled "Paste this code on your site";
-    and
+ 4. Click "Tracking Info" then "Tracking Code"
+ 
+ 5. Copy the Tracking ID at the top of the page (starts with 'UA-')
 
- 5. Paste it into the box on the plugin configuration page.
+ 5. Paste it into the box on the plugin configuration page and save changes
 
 That's it. You should start seeing results in Google Analytics in 24-48 hours.
 
