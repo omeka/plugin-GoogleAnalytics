@@ -27,7 +27,7 @@ define('GOOGLE_ANALYTICS_PLUGIN_VERSION', get_plugin_ini('OmekaGoogleAnalytics',
 define('GOOGLE_ANALYTICS_PLUGIN_DIR', dirname(__FILE__));
 define('GOOGLE_ANALYTICS_ACCOUNT_OPTION', 'googleanalytics_account_id');
 
-class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
+class OmekaGoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
 {
     protected $_hooks =array(
         'install',
