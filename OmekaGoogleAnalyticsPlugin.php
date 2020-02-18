@@ -23,16 +23,16 @@
  *
  */
 
-define('GOOGLE_ANALYTICS_PLUGIN_VERSION', get_plugin_ini('GoogleAnalytics', 'version'));
+define('GOOGLE_ANALYTICS_PLUGIN_VERSION', get_plugin_ini('OmekaGoogleAnalytics', 'version'));
 define('GOOGLE_ANALYTICS_PLUGIN_DIR', dirname(__FILE__));
 define('GOOGLE_ANALYTICS_ACCOUNT_OPTION', 'googleanalytics_account_id');
 
-class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
+class OmekaGoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
 {
     protected $_hooks =array(
         'install',
         'uninstall',
-        'public_footer',
+        'public_head',
         'config',
         'config_form'
     );
@@ -43,26 +43,26 @@ class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
     {
         set_option('googleanalytics_version', GOOGLE_ANALYTICS_PLUGIN_DIR);
     }
+    
     public function hookUninstall()
     {
         delete_option('googleanalytics_version');
         delete_option(GOOGLE_ANALYTICS_ACCOUNT_OPTION);
     }
-    public function hookPublicFooter()
+    
+    public function hookPublicHead()
     {
         $accountId = get_option(GOOGLE_ANALYTICS_ACCOUNT_OPTION);
         if (empty($accountId)) {
             return;
         }
 
-        $js = file_get_contents(GOOGLE_ANALYTICS_PLUGIN_DIR . '/snippet.js');
-        $html = '<script type="text/javascript">'
-              . 'var accountId =' . js_escape($accountId) .';'
-              . $js
-              . '</script>';
-
-        echo $html;
+        $jstemplate = file_get_contents(GOOGLE_ANALYTICS_PLUGIN_DIR . '/gtag.js');
+        $js = str_replace("GA_MEASUREMENT_ID", $accountId, $jstemplate);
+        
+        echo $js;
     }
+    
     public function hookConfig($args)
     {
         $post = $args['post'];
@@ -71,6 +71,7 @@ class GoogleAnalyticsPlugin extends Omeka_Plugin_AbstractPlugin
             $post[GOOGLE_ANALYTICS_ACCOUNT_OPTION]
         );
     }
+    
     public function hookConfigForm()
     {
        include GOOGLE_ANALYTICS_PLUGIN_DIR . '/config_form.php';

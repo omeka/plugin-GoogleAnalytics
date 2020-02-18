@@ -19,10 +19,10 @@ echo $view->formText(
 <p>To find you Google Analytics Account ID, follow these steps:</p>
 <ol style="list-style: decimal inside;">
 <li>Create or log into 
-<a href="https://www.google.com/analytics/" target="_blank">Google Analytics</a> account;
+<a href="https://analytics.google.com/" target="_blank">Google Analytics</a> account;
 </li>
-<li> Add a &quot;Website Profile&quot; for this Omeka.net website;</li>
-<li>Copy the value for the account ID found next to the site URL (starts with &quot;UA-&quot;);</li>
+<li> Add a &quot;Property&quot; for this Omeka website;</li>
+<li>Copy the value for the account ID found in Admin-&gt;Property-&gt;Tracking Info-&gt;Tracking Code. (starts with &quot;UA-&quot;);</li>
 <li>Paste it into the text field above and save changes.</li>
 </ol>
 
